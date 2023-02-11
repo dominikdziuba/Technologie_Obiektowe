@@ -1,21 +1,19 @@
 import os
 
-class ScoreSingleton:
+class SaveToFile:
     __instance = None
 
     @staticmethod
     def getInstance():
-        """ Static access method. """
-        if ScoreSingleton.__instance == None:
-            ScoreSingleton()
-        return ScoreSingleton.__instance
+        if SaveToFile.__instance == None:
+            SaveToFile()
+        return SaveToFile.__instance
 
     def __init__(self):
-        """ Virtually private constructor. """
-        if ScoreSingleton.__instance != None:
+        if SaveToFile.__instance != None:
             raise Exception("This class is a singleton!")
         else:
-            ScoreSingleton.__instance = self
+            SaveToFile.__instance = self
             self.scores = {}
             self.file_name = "scores.txt"
             if not os.path.isfile(self.file_name):

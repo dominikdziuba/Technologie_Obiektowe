@@ -1,7 +1,12 @@
+package fireStation;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireStation {
+import incidents.Incident;
+import fireTruck.FireTruck;
+
+public class FireStation implements Observer {
 
     private int id;
     private double height;
@@ -33,5 +38,21 @@ public class FireStation {
                 counter+=1;
         }
         return counter;
+    }
+
+    @Override
+    public void update(Incident event, int counter){
+        boolean auth = event.getAlarmState();
+        for (FireTruck fireTruck:fireTrucks) {
+            if (counter == 0)
+                break;
+            if(fireTruck.getStatus()) {
+                fireTruck.setStatus(false);
+                counter -= 1;
+                System.out.println("Jednostka "+ fireTruck.getIdTruck() + " została oddelegowana do zgłoszenia " + event.getId() + '.');
+                new Thread(() -> fireTruck.make(auth, event.getId())).start();
+
+            }
+        }
     }
 }

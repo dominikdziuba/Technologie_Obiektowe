@@ -1,4 +1,4 @@
-package type;
+package types;
 
 public class FireDanger implements IType {
 

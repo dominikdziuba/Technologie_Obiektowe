@@ -3,18 +3,21 @@ from flyweight import *
 from person import Person
 
 class View():
-    factory = FlyweightFactory()
-    real_subject = RealSubject()
-    proxy = Proxy(real_subject)
 
-    first_name = input("Podaj imię: ")
-    last_name = input("Podaj nazwisko: ")
-    latitude = input("Podaj szerokość geograficzną: ")
-    longitude = input("Podaj długość geograficzną: ")
+    def __init__(self):
+        self.factory = FlyweightFactory()
+        self.real_subject = RealSubject()
+        self.proxy = Proxy(self.real_subject)
 
-    person = Person(first_name, last_name, latitude, longitude)
-    flyweight = factory.get_flyweight(person)
+    def input_data(self):
+        first_name = input("Podaj imię: ")
+        last_name = input("Podaj nazwisko: ")
+        latitude = input("Podaj szerokość geograficzną: ")
+        longitude = input("Podaj długość geograficzną: ")
 
-    proxy.add_person(person)
+        person = Person(first_name, last_name, latitude, longitude)
+        flyweight = self.factory.get_flyweight(person)
 
-    proxy.save_data("data.txt")
+        self.proxy.add_person(person)
+
+        self.proxy.save_data("data.txt")

@@ -1,15 +1,15 @@
 package incidents;
 
-import type.FireDanger;
-import type.IType;
-import type.LocalDanger;
+import types.FireDanger;
+import types.IType;
+import types.LocalDanger;
 
 import java.util.Random;
 
 public class Incident implements IType {
     private final int id;
     private final IType type;
-    private boolean authentication;
+    private boolean authentication = true;
     private final double h;
     private final double w;
 
@@ -48,8 +48,8 @@ public class Incident implements IType {
             this.type = new FireDanger();
 
         Random authAlarm = new Random();
-        if (authAlarm.nextInt(100) < 5)
-            this.authentication =false;
+        if (authAlarm.nextInt(100) <= 5)
+            this.authentication = false;
         Random random = new Random();
         this.h = random.nextDouble(x1,x2);
         this.w = random.nextDouble(y1,y2);

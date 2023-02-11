@@ -17,8 +17,8 @@ frame_margin = 2
 block_width, block_height = 20, 20
 block_margin = 1
 
-speed = 500
-move_down = USEREVENT + 1
+move_tempo = 500
+move_event = USEREVENT + 1
 speed_increase = 1.5
 next_level = 2000
 next_level_ratio = 2
